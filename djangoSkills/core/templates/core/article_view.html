@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <title>Articles</title>
+</head>
+
+<body>
+    <main>
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row row-cols-1">
+                    <div class="col d-flex justify-content-center">
+                        <div class="card shadow-sm" style="width: 75%;">
+                            <img class="bd-placeholder-img card-img-top" width="100%" height="500"
+                                src={{article.image.url}} role="img" aria-label="Placeholder: Thumbnail"
+                                preserveAspectRatio="xMidYMid slice" focusable="false">
+                            {% for image in images %}
+                                <img class="bd-placeholder-img card-img-top" width="100%" height="500"
+                                src={{image.image.url}} role="img" aria-label="Placeholder: Thumbnail"
+                                preserveAspectRatio="xMidYMid slice" focusable="false">
+                            {% endfor %}
+                            <rect width="100%" height="100%" fill="#55595c"></rect>
+                            </img>
+                            <div class="card-body">
+                                <h2>{{ article.title }}</h2>
+                                <h4>{{ article.author }}</h4>
+                                <h6>{{ article.created_at }}</h6>
+                                <p class="card-text">{{ article.description }}</p>
+                                <p class="card-text">{{ article.text }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">Время чтения: {{ article.reading_time }} минут</small>
+                                </div>
+                            </div>
+                            
+                            {% for comment in comments %}
+                            <div class="card-body">
+                                <p class="card-text">{{ comment.author }}</p>
+                            </div>
+                            <div class="card-body" style="border: 0.5px solid black; border-radius: 25px;">
+                                <p class="card-text">{{ comment.text }}</p>
+                                <p class="card-text">{{ comment.created_at }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
